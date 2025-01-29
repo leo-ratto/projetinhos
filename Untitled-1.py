@@ -106,4 +106,22 @@ print(f'O valor total dos descontos é de: R${desc}')
 
 #16
 area2=float(input('informe o tamanho da área que será pintada, em m²: '))
-lata=area2/3/18
+lata=area2/3//18
+if lata%True:
+    print(f'você precisa de {lata+1} lata(s)')
+else:
+    print(f'você precisa de {lata} lata(s)')
+    
+# Estrutura De Decisão
+#1
+nm=int(input('digite um número: '))
+nm1=int(input('digite outro número: '))
+if nm>nm1:
+    print(f'o maior número é: {nm}')
+elif nm==nm1:
+    print('os números são iguais')
+else:
+    print(f'o maior número é: {nm1}')
+
+#2
+sex=input('informe seu sexo')
