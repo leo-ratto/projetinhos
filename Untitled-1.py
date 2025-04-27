@@ -106,11 +106,15 @@ print(f'O valor total dos descontos é de: R${desc}')
 
 #16
 area2=float(input('informe o tamanho da área que será pintada, em m²: '))
-lata=area2/3//18
-if lata%True:
-    print(f'você precisa de {lata+1} lata(s)')
+if area2%3>0:
+    tinta=area2//3+1
 else:
-    print(f'você precisa de {lata} lata(s)')
+    tinta=area2//3
+if tinta%18>0:
+    lata=tinta//18+1
+else:
+    lata=tinta//18
+print(f'serão necessárias {lata} latas')
     
 # Estrutura De Decisão
 #1
@@ -124,4 +128,38 @@ else:
     print(f'o maior número é: {nm1}')
 
 #2
-sex=input('informe seu sexo')
+no=float(input('insira um número: '))
+if no>0:
+    print('o número é positivo')
+elif no==0:
+    print('o número é nulo')
+else:
+    print('o número é positivo')
+    
+#3
+sex=input('informe seu sexo (digite f para feminino e m para masculino): ')
+if sex('f'):
+    print('o sexo informado foi o feminino')
+elif sex('m'):
+    print('o sexo informado foi o masculino')
+else:
+    print('sexo inválido')
+
+#4
+vog = ['a', 'e', 'i', 'o', 'u']
+pipipupu=input('digite uma letra: ')
+if pipipupu in vog:
+    print(f'a letra {pipipupu} é uma vogal')
+else:
+    print(f'a letra {pipipupu} é uma consoante')
+    
+#5
+gr1=float(input('nota 1: '))
+gr2=float(input('nota 2: '))
+media2=(gr1+gr2)/2
+if media2==10:
+    print('Aprovado com Distinção')
+elif media2>=7:
+    print("Aprovado")
+else:
+    print("Reprovado")
