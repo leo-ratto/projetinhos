@@ -80,11 +80,17 @@ while True:
     
     while True:
         
+        # Player
         if 0 in nmr_mao and soma_mao <= 11:
-            show_mao = f'{soma_mao}/{soma_mao + 10}'
+
+            if n == 0 and 10 in valor_mao:
+                show_mao = '21'
+            else:
+                show_mao = f'{soma_mao}/{soma_mao + 10}'
+
         else:
             show_mao = str(soma_mao)
-        
+
         show_cartas = 'Jogador: '
         
         for i in range(len(mao)):
@@ -93,43 +99,45 @@ while True:
             
         show_cartas += f'| {show_mao}'
         
+        # Dealer
         if nm_dealer[0] == 0:
             print(f'Dealer: {dealear[0]} 🂠 | 1/10')
         
         else:
-            print(f'Dealer: {dealear[0]} 🂠 | {valor_cartas[vm_dealer[0]]}')
+            print(f'Dealer: {dealear[0]} 🂠 | {valor_cartas[vm_dealer[0]-1]}')
             
         print(show_cartas)
         
         if soma_mao >= 21:
             break            
             
-        if 0 in nmr_mao and soma_mao == 11 and n == 0:
+        if 0 in nmr_mao and soma_mao == 11 and n == 0: # BLACKJACK!!!
             break
-            
+
+        # Ações do player    
         elif n == 0 and bet * 2 <= credito:
             print('Hit (h) | Double (d) | Stand (s)')
             
             print()
             acao = input('Ação: ')
-        
+
         else:
             print('Hit (h) | Stand (s)')
             
             print()
             acao = input('Ação: ')
-            
+
         if acao == 'h':
-            
+
             nmr_mao.append(random.randint(0,12))
             nmr_naipe.append(random.randint(0,3))
-            
+
             mao.append(cartas[nmr_mao[i+1]] + naipe[nmr_naipe[i+1]])
-            
+
             valor_mao.append(valor_cartas[nmr_mao[i+1]])
-            
+
             soma_mao = sum(valor_mao)
-            
+
         if acao == 's':
             break
         
@@ -144,7 +152,9 @@ while True:
             
             valor_mao.append(valor_cartas[nmr_mao[i+1]])
             
-            soma_mao = sum(valor_mao)        
+            soma_mao = sum(valor_mao)
+            break
+            
         else:
             print()
             print('Ação inválida')
@@ -154,8 +164,8 @@ while True:
         
     soma_dealer = vm_dealer[0]
     
-    i = 1
-    while soma_dealer < 17:
+    r = 1
+    while soma_dealer < 17: # mão dealer
         
         nm_dealer.append(random.randint(0,12))
         nn_dealer.append(random.randint(0,3))    
@@ -165,6 +175,14 @@ while True:
         vm_dealer.append(valor_cartas[nm_dealer[i]])
         
         soma_dealer += vm_dealer[i]
+
+        p_dealer = 'Dealer: '
+
+        for n in range(len(dealear)):
+            p_dealer += str(dealear[i])
+            p_dealer += ' '
+
+        
         
         if 0 in nm_dealer:
             
@@ -176,9 +194,8 @@ while True:
             if soma_dealer <= 11:
                 sv_dealer = f' | {soma_dealer}'
                 
-            
-        
-        i += 1
+
+        r += 1
         
     
     
@@ -189,4 +206,4 @@ while True:
     #ver se soma da bust
     #ver se tem ás
     
-    credito -= bet
+    # credito -= bet
