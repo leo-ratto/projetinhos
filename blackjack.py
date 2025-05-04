@@ -50,7 +50,7 @@ while True:
     mao = []
     nmr_mao = []
     nmr_naipe = []
-    valor_mao = []
+    valor_mao = [] #comparar no final
         
     for i in range(2):
         nmr_mao.append(random.randint(0,12))
@@ -67,7 +67,7 @@ while True:
     dealear = []
     nm_dealer = []
     nn_dealer = []
-    vm_dealer = []
+    vm_dealer = [] # comparar no final
 
     nm_dealer.append(random.randint(0,12))
     nn_dealer.append(random.randint(0,3))    
@@ -80,8 +80,7 @@ while True:
     
     while True:
         
-        # Player
-        if 0 in nmr_mao and soma_mao <= 11:
+        if 0 in nmr_mao and soma_mao <= 11: # Player
 
             if n == 0 and 10 in valor_mao:
                 show_mao = '21'
@@ -99,8 +98,7 @@ while True:
             
         show_cartas += f'| {show_mao}'
         
-        # Dealer
-        if nm_dealer[0] == 0:
+        if nm_dealer[0] == 0: # Dealer
             print(f'Dealer: {dealear[0]} 🂠 | 1/10')
         
         else:
@@ -111,21 +109,19 @@ while True:
         if soma_mao >= 21:
             break            
             
-        if 0 in nmr_mao and soma_mao == 11 and n == 0: # BLACKJACK!!!
+        if 0 in nmr_mao and soma_mao == 11 and n == 0: # BLACKJACK
+            soma_mao = 21
             break
 
-        # Ações do player    
-        elif n == 0 and bet * 2 <= credito:
-            print('Hit (h) | Double (d) | Stand (s)')
-            
-            print()
-            acao = input('Ação: ')
+        elif n == 0 and bet * 2 <= credito: # Ações do player
+            print('Double (d) | Hit (h) | Stand (s)')
 
         else:
             print('Hit (h) | Stand (s)')
+        
+        print()
             
-            print()
-            acao = input('Ação: ')
+        acao = input('Ação: ')
 
         if acao == 'h':
 
@@ -164,44 +160,63 @@ while True:
         
     soma_dealer = vm_dealer[0]
     
-    r = 1
+    print()
+    
+    r = 0
     while soma_dealer < 17: # mão dealer
         
         nm_dealer.append(random.randint(0,12))
         nn_dealer.append(random.randint(0,3))    
             
-        dealear.append(cartas[nm_dealer[i]] + naipe[nn_dealer[i]])
+        dealear.append(cartas[nm_dealer[r+1]] + naipe[nn_dealer[r+1]])
         
-        vm_dealer.append(valor_cartas[nm_dealer[i]])
+        vm_dealer.append(valor_cartas[nm_dealer[r+1]])
         
-        soma_dealer += vm_dealer[i]
+        soma_dealer += vm_dealer[r+1]
 
         p_dealer = 'Dealer: '
 
-        for n in range(len(dealear)):
+        for i in range(len(dealear)):
             p_dealer += str(dealear[i])
             p_dealer += ' '
 
-        
-        
         if 0 in nm_dealer:
             
             if 10 in vm_dealer:
                 
-                if i == 1:
+                if r == 0:
+                    soma_dealer += 10
+                    p_dealer += '| 21'
                     break
+
+        if soma_dealer <= 11 and 0 in nm_dealer:
+                sv_dealer = f'| {soma_dealer}/{soma_dealer + 10}'
+                p_dealer += sv_dealer
                 
-            if soma_dealer <= 11:
-                sv_dealer = f' | {soma_dealer}'
+                print(p_dealer)
+                print(show_cartas)
                 
+                if soma_dealer + 10 >= 17:
+                    soma_dealer += 10
+                    break
+                   
+        else:
+            p_dealer += f'| {soma_dealer}'
+                      
+        print(p_dealer)
+        print(show_cartas)
 
         r += 1
         
+    if 0 in nm_dealer and 10 in vm_dealer and r == 0:
+        soma_dealer = 21
     
-    
+    if 0 in nmr_mao and soma_mao == 11:
+        if n == 0:
+            if 
+            
+        soma_dealer
         
-                   
-    
     #se n = 0 e soma é 21, verifica se foi blackjack
     #ver se soma da bust
     #ver se tem ás
